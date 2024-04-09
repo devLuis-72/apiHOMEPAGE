@@ -75,5 +75,11 @@ module.exports = {
             json.error = 'Unable to send data.';
         }
         res.json(json);
+    },
+
+    delete: async(req, res) => {
+        let json = {error:'', result:{}};
+        await homepageServices.delete(req.params.id);
+        res.json(json);
     }
 }
