@@ -28,7 +28,28 @@ module.exports = {
             json.result = noticia;
         }
         res.json(json);
+    },
+
+    post: async(req, res) => {
+        let json = {error:'', result:{}};
+
+        let title = req.body.title;
+        let category = req.body.category;
+        let descr = req.body.descr;
+        let content = req.body.descr;
+
+        if(title && category && descr && content){
+            let noticiaId = await homepageServices.post(title, category, descr, content);
+            json.result = {
+                id: noticiaId,
+                title,
+                category,
+                descr,
+                content
+            };
+        }else{
+            json.error = 'Unable to send data.';
+        }
+        res.json(json);
     }
-
-
 }

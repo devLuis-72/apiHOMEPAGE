@@ -27,5 +27,19 @@ module.exports = {
                     }
             });
         });
+    },
+
+    post: (title, category, descr, content) => {
+        return new Promise((accept, reject)=>{
+            db.query('INSERT INTO noticias (title, category, descr, content) VALUES (?, ?, ?, ?)',
+            [title, category, descr, content],
+            (error, results)=>{
+                if(error) {
+                    reject(error);
+                    return;
+                }
+                accept(results.postId)
+            });
+        });
     }
 };
