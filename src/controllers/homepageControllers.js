@@ -16,5 +16,19 @@ module.exports = {
             })
         }
         res.json(json);
+    },
+
+    get: async(req, res) => {
+        let json = {error:'', result:{}};
+
+        let id = req.params.id;
+        let noticia = await homepageServices.get(id);
+
+        if(noticia){
+            json.result = noticia;
+        }
+        res.json(json);
     }
+
+
 }
