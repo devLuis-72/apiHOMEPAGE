@@ -41,5 +41,19 @@ module.exports = {
                 accept(results.postId)
             });
         });
+    },
+
+    put: (cod, title, category, descr, content) => {
+        return new Promise((accept, reject)=>{
+            db.query('UPDATE noticias SET title = ?, category = ?, descr = ?, content = ? WHERE cod = ?',
+            [title, category, descr, content, cod],
+            (error, results)=>{
+                if(error) {
+                    reject(error);
+                    return;
+                }
+                accept(results)
+            });
+        });
     }
 };
